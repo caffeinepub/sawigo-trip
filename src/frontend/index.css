@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   FONTS — Fraunces (display) + Outfit (body)
+   ============================================================ */
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/assets/fonts/Outfit.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    /* Sawigo Trip Brand Tokens */
+    --radius: 0.75rem;
+
+    /* Brand colors as OKLCH L C H */
+    /* Primary: #FF6F3C (Energetic Orange) → approx oklch(0.68 0.22 37) */
+    --brand-orange: 0.68 0.22 37;
+    /* Secondary: #0D1B2A (Deep Navy) → approx oklch(0.18 0.03 240) */
+    --brand-navy: 0.18 0.03 240;
+    /* Accent Forest Green: #2D6A4F → approx oklch(0.44 0.1 157) */
+    --brand-green: 0.44 0.1 157;
+    /* Gold: #C9A84C → approx oklch(0.72 0.12 75) */
+    --brand-gold: 0.72 0.12 75;
+
+    /* Semantic tokens (light mode = mostly used for form surfaces) */
+    --background: 0.98 0 0;
+    --foreground: 0.18 0.03 240;
+    --card: 1 0 0;
+    --card-foreground: 0.18 0.03 240;
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.03 240;
+    --primary: 0.68 0.22 37;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.18 0.03 240;
+    --secondary-foreground: 0.98 0 0;
+    --muted: 0.94 0 0;
+    --muted-foreground: 0.45 0 0;
+    --accent: 0.44 0.1 157;
+    --accent-foreground: 1 0 0;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.88 0 0;
+    --input: 0.88 0 0;
+    --ring: 0.68 0.22 37;
+    --chart-1: 0.68 0.22 37;
+    --chart-2: 0.44 0.1 157;
+    --chart-3: 0.72 0.12 75;
+    --chart-4: 0.18 0.03 240;
+    --chart-5: 0.6 0.15 200;
+    --sidebar: 0.18 0.03 240;
+    --sidebar-foreground: 0.98 0 0;
+    --sidebar-primary: 0.68 0.22 37;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.25 0.03 240;
+    --sidebar-accent-foreground: 0.98 0 0;
+    --sidebar-border: 0.3 0.03 240;
+    --sidebar-ring: 0.68 0.22 37;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-outfit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes goldGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(201, 168, 76, 0.4), 0 4px 20px rgba(201, 168, 76, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(201, 168, 76, 0.75), 0 0 50px rgba(201, 168, 76, 0.35), 0 4px 20px rgba(201, 168, 76, 0.3);
+  }
+}
+
+@keyframes orangeGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 111, 60, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(255, 111, 60, 0.65), 0 0 45px rgba(255, 111, 60, 0.25);
+  }
+}
+
+@keyframes waPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+  }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+.gold-glow {
+  animation: goldGlow 2.5s ease-in-out infinite;
+}
+
+.orange-glow {
+  animation: orangeGlow 2.5s ease-in-out infinite;
+}
+
+.wa-pulse {
+  animation: waPulse 2s ease-in-out infinite;
+}
+
+.scroll-bounce {
+  animation: scrollBounce 1.8s ease-in-out infinite;
+}
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-delay-1 { transition-delay: 0.1s; }
+.fade-in-delay-2 { transition-delay: 0.2s; }
+.fade-in-delay-3 { transition-delay: 0.3s; }
+.fade-in-delay-4 { transition-delay: 0.4s; }
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #C9A84C, #F0D080, #C9A84C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #C9A84C, #F0D080, #C9A84C);
+  color: #0D1B2A;
+  font-weight: 700;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #b8942a, #e8c860, #b8942a);
+  transform: translateY(-1px);
+}
+
+.shimmer-skeleton {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
